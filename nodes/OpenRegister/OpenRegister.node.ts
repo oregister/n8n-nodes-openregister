@@ -108,6 +108,28 @@ export class OpenRegister implements INodeType {
               },
             },
           },
+          {
+            name: 'Get Holdings',
+            value: 'getHoldings',
+            action: 'Get company holdings',
+            description: 'Fetch companies this company holds stakes in',
+            routing: {
+              request: {
+                method: 'GET',
+                url: '={{"/v1/company/" + encodeURIComponent($parameter["companyId"]) + "/holdings"}}',
+              },
+              output: {
+                postReceive: [
+                  {
+                    type: 'rootProperty',
+                    properties: {
+                      property: 'holdings',
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
         default: 'autocomplete',
       },
@@ -127,7 +149,7 @@ export class OpenRegister implements INodeType {
         name: 'companyId',
         type: 'string',
         required: true,
-        displayOptions: { show: { resource: ['company'], operation: ['getDetails', 'getFinancials', 'getOwners'] } },
+        displayOptions: { show: { resource: ['company'], operation: ['getDetails', 'getFinancials', 'getOwners', 'getHoldings'] } },
         default: '',
         description: 'The ID of the company to fetch',
       },
