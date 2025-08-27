@@ -1,0 +1,22 @@
+{
+    "node": "n8n-nodes-base.OpenRegister",
+    "nodeVersion": "1.0",
+    "codexVersion": "1.0",
+    "categories": ["Data & Storage"],
+    "resources": {
+      "credentialDocumentation": [
+        {
+          "url": "https://docs.openregister.de/authentication"
+        }
+      ],
+      "primaryDocumentation": [
+        {
+          "url": "https://docs.openregister.de"
+        }
+      ]
+    },
+    "subcategories": {
+      "Data & Storage": ["Business Data"]
+    },
+    "alias": ["German Business Registry", "Handelsregister", "Company Search", "OpenRegister"]
+  }
