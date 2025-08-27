@@ -5,10 +5,10 @@ export class OpenRegister implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'OpenRegister',
     name: 'openRegister',
-    icon: 'fa:building',
+    icon: 'file:openregistersvg.svg',
     group: ['transform'],
     version: 1,
-    description: 'Interact with OpenRegister API (v1)',
+    description: 'Interact with the OpenRegister API',
     defaults: { name: 'OpenRegister' },
     inputs: [NodeConnectionType.Main],
     outputs: [NodeConnectionType.Main],
