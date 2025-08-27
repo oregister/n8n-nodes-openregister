@@ -47,6 +47,7 @@ import type {
           options: [
             { name: 'Autocomplete', value: 'autocomplete', description: 'Search-as-you-type companies' },
             { name: 'Get Details', value: 'getDetails', description: 'Fetch a company by ID' },
+            { name: 'Get Financials', value: 'getFinancials', description: 'Fetch company financials by ID' },
           ],
           default: 'autocomplete',
         },
@@ -66,7 +67,7 @@ import type {
           name: 'companyId',
           type: 'string',
           required: true,
-          displayOptions: { show: { resource: ['company'], operation: ['getDetails'] } },
+          displayOptions: { show: { resource: ['company'], operation: ['getDetails', 'getFinancials'] } },
           default: '',
           description: 'The ID of the company to fetch',
         },
@@ -93,6 +94,9 @@ import type {
         } else if (resource === 'company' && operation === 'getDetails') {
           const companyId = this.getNodeParameter('companyId', i) as string;
           options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}`;
+        } else if (resource === 'company' && operation === 'getFinancials') {
+          const companyId = this.getNodeParameter('companyId', i) as string;
+          options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}/financials`;
         } else {
           throw new Error('Unknown resource/operation');
         }
