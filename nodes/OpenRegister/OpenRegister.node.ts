@@ -88,19 +88,32 @@ import type {
       for (let i = 0; i < items.length; i++) {
         const options: IHttpRequestOptions = { method: 'GET', url: '' };
   
-        if (resource === 'company' && operation === 'autocomplete') {
-          const query = this.getNodeParameter('query', i) as string;
-          options.url = `${baseUrl}/v1/autocomplete/company`;
-          options.qs = { query } as IDataObject;
-        } else if (resource === 'company' && operation === 'getDetails') {
-          const companyId = this.getNodeParameter('companyId', i) as string;
-          options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}`;
-        } else if (resource === 'company' && operation === 'getFinancials') {
-          const companyId = this.getNodeParameter('companyId', i) as string;
-          options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}/financials`;
-        } else if (resource === 'company' && operation === 'getOwners') {
-          const companyId = this.getNodeParameter('companyId', i) as string;
-          options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}/owners`;
+        if (resource === 'company') {
+          switch (operation) {
+            case 'autocomplete': {
+              const query = this.getNodeParameter('query', i) as string;
+              options.url = `${baseUrl}/v1/autocomplete/company`;
+              options.qs = { query } as IDataObject;
+              break;
+            }
+            case 'getDetails': {
+              const companyId = this.getNodeParameter('companyId', i) as string;
+              options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}`;
+              break;
+            }
+            case 'getFinancials': {
+              const companyId = this.getNodeParameter('companyId', i) as string;
+              options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}/financials`;
+              break;
+            }
+            case 'getOwners': {
+              const companyId = this.getNodeParameter('companyId', i) as string;
+              options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}/owners`;
+              break;
+            }
+            default:
+              throw new Error('Unknown resource/operation');
+          }
         } else {
           throw new Error('Unknown resource/operation');
         }
@@ -111,28 +124,39 @@ import type {
           options,
         );
   
-        if (resource === 'company' && operation === 'autocomplete') {
-          const results = Array.isArray((responseData as IDataObject).results)
-            ? ((responseData as IDataObject).results as IDataObject[])
-            : ([] as IDataObject[]);
-  
-          for (const r of results) {
-            returnData.push({ json: r });
-          }
-        } else if (resource === 'company' && operation === 'getOwners') {
-          const ownersFromProperty = Array.isArray((responseData as IDataObject).owners)
-            ? ((responseData as IDataObject).owners as IDataObject[])
-            : undefined;
+        if (resource === 'company') {
+          switch (operation) {
+            case 'autocomplete': {
+              const results = Array.isArray((responseData as IDataObject).results)
+                ? ((responseData as IDataObject).results as IDataObject[])
+                : ([] as IDataObject[]);
 
-          const ownersArray = ownersFromProperty
-            ?? (Array.isArray(responseData) ? (responseData as unknown as IDataObject[]) : undefined);
-
-          if (ownersArray) {
-            for (const owner of ownersArray) {
-              returnData.push({ json: owner });
+              for (const r of results) {
+                returnData.push({ json: r });
+              }
+              break;
             }
-          } else {
-            returnData.push({ json: responseData as IDataObject });
+            case 'getOwners': {
+              const ownersFromProperty = Array.isArray((responseData as IDataObject).owners)
+                ? ((responseData as IDataObject).owners as IDataObject[])
+                : undefined;
+
+              const ownersArray = ownersFromProperty
+                ?? (Array.isArray(responseData) ? (responseData as unknown as IDataObject[]) : undefined);
+
+              if (ownersArray) {
+                for (const owner of ownersArray) {
+                  returnData.push({ json: owner });
+                }
+              } else {
+                returnData.push({ json: responseData as IDataObject });
+              }
+              break;
+            }
+            default: {
+              returnData.push({ json: responseData as IDataObject });
+              break;
+            }
           }
         } else {
           returnData.push({ json: responseData as IDataObject });
