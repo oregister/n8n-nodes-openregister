@@ -60,15 +60,6 @@ import type {
           default: '',
           description: 'Free-text query for company autocomplete',
         },
-        {
-          displayName: 'Limit',
-          name: 'limit',
-          type: 'number',
-          typeOptions: { minValue: 1, maxValue: 100 },
-          displayOptions: { show: { resource: ['company'], operation: ['autocomplete'] } },
-          default: 10,
-          description: 'Maximum number of suggestions to return',
-        },
         // Details fields
         {
           displayName: 'Company ID',
@@ -97,9 +88,8 @@ import type {
   
         if (resource === 'company' && operation === 'autocomplete') {
           const query = this.getNodeParameter('query', i) as string;
-          const limit = this.getNodeParameter('limit', i) as number;
           options.url = `${baseUrl}/v1/autocomplete/company`;
-          options.qs = { query, limit } as IDataObject;
+          options.qs = { query } as IDataObject;
         } else if (resource === 'company' && operation === 'getDetails') {
           const companyId = this.getNodeParameter('companyId', i) as string;
           options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}`;
