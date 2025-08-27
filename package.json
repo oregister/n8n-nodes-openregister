@@ -1,9 +1,11 @@
 {
   "name": "n8n-nodes-openregister",
   "version": "0.1.0",
-  "description": "",
+  "description": "Community n8n nodes for OpenRegister",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "handelsregister",
+    "openregister"
   ],
   "license": "MIT",
   "homepage": "",
@@ -33,12 +35,10 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/OpenRegisterApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/OpenRegister/OpenRegister.node.js"
     ]
   },
   "devDependencies": {
