@@ -48,6 +48,7 @@ import type {
             { name: 'Autocomplete', value: 'autocomplete', description: 'Search-as-you-type companies' },
             { name: 'Get Details', value: 'getDetails', description: 'Fetch a company by ID' },
             { name: 'Get Financials', value: 'getFinancials', description: 'Fetch company financials by ID' },
+            { name: 'Get Owners', value: 'getOwners', description: 'Fetch company owners by ID' },
           ],
           default: 'autocomplete',
         },
@@ -67,7 +68,7 @@ import type {
           name: 'companyId',
           type: 'string',
           required: true,
-          displayOptions: { show: { resource: ['company'], operation: ['getDetails', 'getFinancials'] } },
+          displayOptions: { show: { resource: ['company'], operation: ['getDetails', 'getFinancials', 'getOwners'] } },
           default: '',
           description: 'The ID of the company to fetch',
         },
@@ -97,6 +98,9 @@ import type {
         } else if (resource === 'company' && operation === 'getFinancials') {
           const companyId = this.getNodeParameter('companyId', i) as string;
           options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}/financials`;
+        } else if (resource === 'company' && operation === 'getOwners') {
+          const companyId = this.getNodeParameter('companyId', i) as string;
+          options.url = `${baseUrl}/v1/company/${encodeURIComponent(companyId)}/owners`;
         } else {
           throw new Error('Unknown resource/operation');
         }
@@ -114,6 +118,21 @@ import type {
   
           for (const r of results) {
             returnData.push({ json: r });
+          }
+        } else if (resource === 'company' && operation === 'getOwners') {
+          const ownersFromProperty = Array.isArray((responseData as IDataObject).owners)
+            ? ((responseData as IDataObject).owners as IDataObject[])
+            : undefined;
+
+          const ownersArray = ownersFromProperty
+            ?? (Array.isArray(responseData) ? (responseData as unknown as IDataObject[]) : undefined);
+
+          if (ownersArray) {
+            for (const owner of ownersArray) {
+              returnData.push({ json: owner });
+            }
+          } else {
+            returnData.push({ json: responseData as IDataObject });
           }
         } else {
           returnData.push({ json: responseData as IDataObject });
