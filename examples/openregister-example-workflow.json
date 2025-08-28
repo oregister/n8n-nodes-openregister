@@ -1,0 +1,170 @@
+{
+  "name": "OpenRegister Example Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        -112
+      ],
+      "id": "42ea5f6c-ace6-4945-a319-d04bc4c6815c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "requestOptions": {}
+      },
+      "type": "CUSTOM.openRegister",
+      "typeVersion": 1,
+      "position": [
+        48,
+        -112
+      ],
+      "id": "ab1661f1-2306-4965-9169-85c26e98e882",
+      "name": "Get companies by name",
+      "credentials": {
+        "openRegisterApi": {
+          "id": "2Cuv4zEm4M1rj5i1",
+          "name": "OpenRegister account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "companyDetails",
+        "companyId": "={{ $json.company_id }}",
+        "requestOptions": {}
+      },
+      "type": "CUSTOM.openRegister",
+      "typeVersion": 1,
+      "position": [
+        272,
+        -400
+      ],
+      "id": "cbb0aa21-e693-47b8-9563-ed4580d68ca4",
+      "name": "Get company details",
+      "credentials": {
+        "openRegisterApi": {
+          "id": "2Cuv4zEm4M1rj5i1",
+          "name": "OpenRegister account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "companyFinancials",
+        "companyId": "={{ $json.company_id }}",
+        "requestOptions": {}
+      },
+      "type": "CUSTOM.openRegister",
+      "typeVersion": 1,
+      "position": [
+        272,
+        -208
+      ],
+      "id": "b45a3ae4-576e-4a20-aefe-26821475762d",
+      "name": "Get company financials",
+      "credentials": {
+        "openRegisterApi": {
+          "id": "2Cuv4zEm4M1rj5i1",
+          "name": "OpenRegister account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "companyHoldings",
+        "companyId": "={{ $json.company_id }}",
+        "requestOptions": {}
+      },
+      "type": "CUSTOM.openRegister",
+      "typeVersion": 1,
+      "position": [
+        272,
+        -16
+      ],
+      "id": "b28c578f-189c-49f0-8fa7-472d861264c7",
+      "name": "Get company holdings",
+      "credentials": {
+        "openRegisterApi": {
+          "id": "2Cuv4zEm4M1rj5i1",
+          "name": "OpenRegister account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "companyOwners",
+        "companyId": "={{ $json.company_id }}",
+        "requestOptions": {}
+      },
+      "type": "CUSTOM.openRegister",
+      "typeVersion": 1,
+      "position": [
+        272,
+        176
+      ],
+      "id": "ad0ebb67-47f4-42f0-9ac3-6108cda399a8",
+      "name": "Get company owners",
+      "credentials": {
+        "openRegisterApi": {
+          "id": "2Cuv4zEm4M1rj5i1",
+          "name": "OpenRegister account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get companies by name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get companies by name": {
+      "main": [
+        [
+          {
+            "node": "Get company details",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get company financials",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get company holdings",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get company owners",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "92d5ede8-1d13-49c5-9ad3-a6d565b245f0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "03b1a0f0679326b05c6a39d8699cff91fa57d5a9261d3f0b270b20f168176533"
+  },
+  "id": "N7mqUwKJjMKmdo2s",
+  "tags": []
+}

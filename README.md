@@ -20,13 +20,13 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 Resource: Company
 
-- Search for a Company: Search companies by name. Endpoint: `/v1/autocomplete/company` (query param: `query`).
-- Get Company Details: Fetch company details by ID. Endpoint: `/v1/company/{companyId}`.
-- Get Company Financials: Fetch company financials by ID. Endpoint: `/v1/company/{companyId}/financials`.
-- Get Company Owners: Fetch company owners by ID. Endpoint: `/v1/company/{companyId}/owners`.
-- Get Company Holdings: Fetch companies this company holds stakes in. Endpoint: `/v1/company/{companyId}/holdings`.
+- **Search for a Company:** Search companies by name. Endpoint: `/v1/autocomplete/company` (query param: `query`).
+- **Get Company Details:** Fetch company details by ID. Endpoint: `/v1/company/{companyId}`.
+- **Get Company Financials:** Fetch company financials by ID. Endpoint: `/v1/company/{companyId}/financials`.
+- **Get Company Owners:** Fetch company owners by ID. Endpoint: `/v1/company/{companyId}/owners`.
+- **Get Company Holdings:** Fetch companies this company holds stakes in. Endpoint: `/v1/company/{companyId}/holdings`.
 
-The company ID is a unique identifier for a company in the OpenRegister database. You can get the company ID for a company in the results of the `Search for a Company` operation.
+The company ID is a unique identifier for a company inside the OpenRegister ecosystem. You can get the company ID for a company in the results of the `Search for a Company` operation.
 
 ## Credentials
 
@@ -34,7 +34,7 @@ This node uses API key authentication via an `Authorization: Bearer` header.
 
 How to get an API key:
 
-1. Create an account at `https://openregister.de` and sign in.
+1. Create an account at [openregister.de](https://openregister.de) and sign in.
 2. In your dashboard, open the API keys section and create a new API key.
 3. Copy the key value. Keep it secure.
 
@@ -61,12 +61,16 @@ Authorization: Bearer YOUR_API_KEY
 - Search companies: Choose resource `Company` and operation `Search for a Company`, set "Company Name" (`query`). The node returns the `results` array of the matching companies.
 - Get details/financials/owners/holdings: Use the `id` from a previous search as `Company ID`.
 
+An example workflow doing exactly that is available [here](./examples/openregister-example-workflow.json).
+To try it out, just add a company name as the search parameter in the first node and click _Execute Workflow_.
+
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 - [OpenRegister Documentation](https://docs.openregister.de)
 - [OpenRegister Authentication](https://docs.openregister.de/authentication)
 - [OpenRegister Coverage](https://docs.openregister.de/coverage)
+- [OpenRegister Example Workflow](./examples/openregister-example-workflow.json)
 
 ## Version history
 
