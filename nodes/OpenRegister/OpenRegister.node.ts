@@ -38,9 +38,9 @@ export class OpenRegister implements INodeType {
         displayOptions: { show: { resource: ['company'] } },
         options: [
           {
-            name: 'Company Details',
+            name: 'Get Company Details',
             value: 'companyDetails',
-            action: 'Company details',
+            action: 'Get company details',
             description: 'Fetch company details by ID',
             routing: {
               request: {
@@ -50,9 +50,9 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Company Financials',
+            name: 'Get Company Financials',
             value: 'companyFinancials',
-            action: 'Company financials',
+            action: 'Get company financials',
             description: 'Fetch company financials by ID',
             routing: {
               request: {
@@ -62,9 +62,9 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Company Holdings',
+            name: 'Get Company Holdings',
             value: 'companyHoldings',
-            action: 'Company holdings',
+            action: 'Get company holdings',
             description: 'Fetch companies this company holds stakes in',
             routing: {
               request: {
@@ -84,9 +84,9 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Company Owners',
+            name: 'Get Company Owners',
             value: 'companyOwners',
-            action: 'Company owners',
+            action: 'Get company owners',
             description: 'Fetch company owners by ID',
             routing: {
               request: {
@@ -106,9 +106,9 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Company Search',
+            name: 'Search for a Company',
             value: 'search',
-            action: 'Company search',
+            action: 'Get companies by name',
             description: 'Search companies by name',
             routing: {
               request: {
