@@ -38,10 +38,10 @@ export class OpenRegister implements INodeType {
         displayOptions: { show: { resource: ['company'] } },
         options: [
           {
-            name: 'Search',
+            name: 'Company Search',
             value: 'search',
-            action: 'Search company',
-            description: 'Search-as-you-type companies',
+            action: 'Company Search',
+            description: 'Search companies by name',
             routing: {
               request: {
                 method: 'GET',
