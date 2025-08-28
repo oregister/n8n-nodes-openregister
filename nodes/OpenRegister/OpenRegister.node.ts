@@ -38,9 +38,9 @@ export class OpenRegister implements INodeType {
         displayOptions: { show: { resource: ['company'] } },
         options: [
           {
-            name: 'Autocomplete',
-            value: 'autocomplete',
-            action: 'Autocomplete company',
+            name: 'Search',
+            value: 'search',
+            action: 'Search company',
             description: 'Search-as-you-type companies',
             routing: {
               request: {
@@ -63,10 +63,10 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Get Details',
-            value: 'getDetails',
-            action: 'Get company details',
-            description: 'Fetch a company by ID',
+            name: 'Company Details',
+            value: 'companyDetails',
+            action: 'Company Details',
+            description: 'Fetch company details by ID',
             routing: {
               request: {
                 method: 'GET',
@@ -75,9 +75,9 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Get Financials',
-            value: 'getFinancials',
-            action: 'Get company financials',
+            name: 'Company Financials',
+            value: 'companyFinancials',
+            action: 'Company Financials',
             description: 'Fetch company financials by ID',
             routing: {
               request: {
@@ -87,9 +87,9 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Get Owners',
-            value: 'getOwners',
-            action: 'Get company owners',
+            name: 'Company Owners',
+            value: 'companyOwners',
+            action: 'Company Owners',
             description: 'Fetch company owners by ID',
             routing: {
               request: {
@@ -109,9 +109,9 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Get Holdings',
-            value: 'getHoldings',
-            action: 'Get company holdings',
+            name: 'Company Holdings',
+            value: 'companyHoldings',
+            action: 'Company Holdings',
             description: 'Fetch companies this company holds stakes in',
             routing: {
               request: {
@@ -131,17 +131,17 @@ export class OpenRegister implements INodeType {
             },
           },
         ],
-        default: 'autocomplete',
+        default: 'search',
       },
       // Autocomplete fields
       {
-        displayName: 'Query',
+        displayName: 'Company Name',
         name: 'query',
         type: 'string',
         required: true,
-        displayOptions: { show: { resource: ['company'], operation: ['autocomplete'] } },
+        displayOptions: { show: { resource: ['company'], operation: ['search'] } },
         default: '',
-        description: 'Free-text query for company autocomplete',
+        description: 'Search for a company by name',
       },
       // Details fields
       {
@@ -149,7 +149,7 @@ export class OpenRegister implements INodeType {
         name: 'companyId',
         type: 'string',
         required: true,
-        displayOptions: { show: { resource: ['company'], operation: ['getDetails', 'getFinancials', 'getOwners', 'getHoldings'] } },
+        displayOptions: { show: { resource: ['company'], operation: ['companyDetails', 'companyFinancials', 'companyOwners', 'companyHoldings'] } },
         default: '',
         description: 'The ID of the company to fetch',
       },
