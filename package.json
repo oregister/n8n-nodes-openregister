@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oregister/openregister-n8n-nodes.git"
+    "url": "https://github.com/oregister/n8n-nodes-openregister"
   },
   "engines": {
     "node": ">=20.15"
