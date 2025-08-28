@@ -1,48 +1,73 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-openregister
 
-# n8n-nodes-starter
+This package provides n8n community nodes to interact with the OpenRegister API from your workflows. See the official documentation at [docs.openregister.de](https://docs.openregister.de).
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+OpenRegister provides programmatic access to structured company registry data from the Handels- and Unternehmensregister. See what data exactly are available [here](https://docs.openregister.de/coverage).
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+[Installation](#installation)  
+[Operations](#operations)  
+[Credentials](#credentials)  
+[Compatibility](#compatibility)  
+[Usage](#usage)  
+[Resources](#resources)  
+[Version history](#version-history)
 
-If you would like your node to be available on n8n cloud you can also [submit your node for verification](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/).
+## Installation
 
-## Prerequisites
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation to add this package (`n8n-nodes-openregister`) to your n8n instance.
 
-You need the following installed on your development machine:
+## Operations
 
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+Resource: Company
 
-## Using this starter
+- Search: Search companies by name. Endpoint: `/v1/autocomplete/company` (query param: `query`).
+- Company Details: Fetch company details by company ID. Endpoint: `/v1/company/{companyId}`.
+- Company Financials: Fetch company financials by company ID. Endpoint: `/v1/company/{companyId}/financials`.
+- Company Owners: Fetch company owners by company ID. Endpoint: `/v1/company/{companyId}/owners`.
+- Company Holdings: Fetch companies this company holds stakes in by company ID. Endpoint: `/v1/company/{companyId}/holdings`.
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+The company id is a unique identifier for a company in the OpenRegister database. You can get the company ID for a company in the results of the `Company Search` operation.
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+## Credentials
 
-## More information
+This node uses API key authentication via an `Authorization: Bearer` header.
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+How to get an API key:
 
-## License
+1. Create an account at `https://openregister.de` and sign in.
+2. In your dashboard, open the API keys section and create a new API key.
+3. Copy the key value. Keep it secure.
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+Details and up-to-date instructions: see [Authentication](https://docs.openregister.de/authentication).
+
+In n8n, create credentials of type `OpenRegister API` and set:
+
+- Base URL: `https://api.openregister.de` (default)
+- API Key: your generated key
+
+Requests are sent with:
+
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Compatibility
+
+- n8n Nodes API version: 1
+- Node.js: >= 20.15
+
+## Usage
+
+- Search companies: Choose resource `Company` and operation `Search`, set "Company Name" (`query`). The node returns the `results` array of the matching companies.
+- Get details/financials/owners/holdings: Use the `id` from a previous search as `Company ID`.
+
+## Resources
+
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
+- [OpenRegister Documentation](https://docs.openregister.de)
+- [OpenRegister Authentication](https://docs.openregister.de/authentication)
+- [OpenRegister Coverage](https://docs.openregister.de/coverage)
+
+## Version history
+
+- 0.1.0: Initial release
