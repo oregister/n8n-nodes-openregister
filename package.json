@@ -1,6 +1,6 @@
 {
   "name": "@oregister/n8n-nodes-openregister",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Community n8n nodes for OpenRegister",
   "keywords": [
     "n8n-community-node-package",
