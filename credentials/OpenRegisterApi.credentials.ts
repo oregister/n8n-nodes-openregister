@@ -1,4 +1,4 @@
-import type { IAuthenticateGeneric, ICredentialType, INodeProperties } from 'n8n-workflow';
+import type { IAuthenticateGeneric, ICredentialTestRequest, ICredentialType, INodeProperties } from 'n8n-workflow';
 
 
 export class OpenRegisterApi implements ICredentialType {
@@ -33,5 +33,17 @@ export class OpenRegisterApi implements ICredentialType {
                 Authorization: '={{"Bearer " + $credentials.apiKey}}',
             },
         },
+    };
+
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: 'https://api.openregister.de',
+			url: '/v1/company/DE-HRB-F1103-267645',
+            headers: {
+                Authorization: '={{"Bearer " + $credentials.apiKey}}',
+            },
+            method: 'GET',
+		},
+
     };
 }
