@@ -2,7 +2,7 @@
 
 This package provides n8n community nodes to interact with the OpenRegister API from your workflows. See the official documentation at [docs.openregister.de](https://docs.openregister.de).
 
-OpenRegister provides programmatic access to structured company registry data from the Handels- and Unternehmensregister. See what data exactly are available [here](https://docs.openregister.de/coverage).
+OpenRegister provides programmatic access to structured company registry data from official sources in Germany. See what data exactly are available [here](https://docs.openregister.de/coverage).
 
 [Installation](#installation)  
 [Operations](#operations)  
@@ -20,13 +20,13 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 Resource: Company
 
-- Search: Search companies by name. Endpoint: `/v1/autocomplete/company` (query param: `query`).
-- Company Details: Fetch company details by company ID. Endpoint: `/v1/company/{companyId}`.
-- Company Financials: Fetch company financials by company ID. Endpoint: `/v1/company/{companyId}/financials`.
-- Company Owners: Fetch company owners by company ID. Endpoint: `/v1/company/{companyId}/owners`.
-- Company Holdings: Fetch companies this company holds stakes in by company ID. Endpoint: `/v1/company/{companyId}/holdings`.
+- Search for a Company: Search companies by name. Endpoint: `/v1/autocomplete/company` (query param: `query`).
+- Get Company Details: Fetch company details by ID. Endpoint: `/v1/company/{companyId}`.
+- Get Company Financials: Fetch company financials by ID. Endpoint: `/v1/company/{companyId}/financials`.
+- Get Company Owners: Fetch company owners by ID. Endpoint: `/v1/company/{companyId}/owners`.
+- Get Company Holdings: Fetch companies this company holds stakes in. Endpoint: `/v1/company/{companyId}/holdings`.
 
-The company id is a unique identifier for a company in the OpenRegister database. You can get the company ID for a company in the results of the `Company Search` operation.
+The company ID is a unique identifier for a company in the OpenRegister database. You can get the company ID for a company in the results of the `Search for a Company` operation.
 
 ## Credentials
 
@@ -58,7 +58,7 @@ Authorization: Bearer YOUR_API_KEY
 
 ## Usage
 
-- Search companies: Choose resource `Company` and operation `Search`, set "Company Name" (`query`). The node returns the `results` array of the matching companies.
+- Search companies: Choose resource `Company` and operation `Search for a Company`, set "Company Name" (`query`). The node returns the `results` array of the matching companies.
 - Get details/financials/owners/holdings: Use the `id` from a previous search as `Company ID`.
 
 ## Resources
