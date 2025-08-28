@@ -38,34 +38,9 @@ export class OpenRegister implements INodeType {
         displayOptions: { show: { resource: ['company'] } },
         options: [
           {
-            name: 'Company Search',
-            value: 'search',
-            action: 'Company Search',
-            description: 'Search companies by name',
-            routing: {
-              request: {
-                method: 'GET',
-                url: '=/v1/autocomplete/company',
-                qs: {
-                  query: '={{$parameter["query"]}}',
-                },
-              },
-              output: {
-                postReceive: [
-                  {
-                    type: 'rootProperty',
-                    properties: {
-                      property: 'results',
-                    },
-                  },
-                ],
-              },
-            },
-          },
-          {
             name: 'Company Details',
             value: 'companyDetails',
-            action: 'Company Details',
+            action: 'Company details',
             description: 'Fetch company details by ID',
             routing: {
               request: {
@@ -77,7 +52,7 @@ export class OpenRegister implements INodeType {
           {
             name: 'Company Financials',
             value: 'companyFinancials',
-            action: 'Company Financials',
+            action: 'Company financials',
             description: 'Fetch company financials by ID',
             routing: {
               request: {
@@ -87,9 +62,31 @@ export class OpenRegister implements INodeType {
             },
           },
           {
+            name: 'Company Holdings',
+            value: 'companyHoldings',
+            action: 'Company holdings',
+            description: 'Fetch companies this company holds stakes in',
+            routing: {
+              request: {
+                method: 'GET',
+                url: '={{"/v1/company/" + encodeURIComponent($parameter["companyId"]) + "/holdings"}}',
+              },
+              output: {
+                postReceive: [
+                  {
+                    type: 'rootProperty',
+                    properties: {
+                      property: 'holdings',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+          {
             name: 'Company Owners',
             value: 'companyOwners',
-            action: 'Company Owners',
+            action: 'Company owners',
             description: 'Fetch company owners by ID',
             routing: {
               request: {
@@ -109,21 +106,24 @@ export class OpenRegister implements INodeType {
             },
           },
           {
-            name: 'Company Holdings',
-            value: 'companyHoldings',
-            action: 'Company Holdings',
-            description: 'Fetch companies this company holds stakes in',
+            name: 'Company Search',
+            value: 'search',
+            action: 'Company search',
+            description: 'Search companies by name',
             routing: {
               request: {
                 method: 'GET',
-                url: '={{"/v1/company/" + encodeURIComponent($parameter["companyId"]) + "/holdings"}}',
+                url: '=/v1/autocomplete/company',
+                qs: {
+                  query: '={{$parameter["query"]}}',
+                },
               },
               output: {
                 postReceive: [
                   {
                     type: 'rootProperty',
                     properties: {
-                      property: 'holdings',
+                      property: 'results',
                     },
                   },
                 ],
@@ -156,4 +156,3 @@ export class OpenRegister implements INodeType {
     ],
   };
 }
-       
