@@ -14,7 +14,7 @@ OpenRegister provides programmatic access to structured company registry data fr
 
 ## Installation
 
-Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation to add this package (`n8n-nodes-openregister`) to your n8n instance.
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation to add this package (`@oregister/n8n-nodes-openregister`) to your n8n instance.
 
 ## Operations
 
