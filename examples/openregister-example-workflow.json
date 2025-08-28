@@ -6,23 +6,24 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -176,
-        -112
+        0,
+        128
       ],
-      "id": "42ea5f6c-ace6-4945-a319-d04bc4c6815c",
+      "id": "747e9d47-bebb-4971-bec2-e5adcfe74c4b",
       "name": "When clicking ‘Execute workflow’"
     },
     {
       "parameters": {
+        "query": "Descartes Technologies",
         "requestOptions": {}
       },
-      "type": "CUSTOM.openRegister",
+      "type": "@oregister/n8n-nodes-openregister.openRegister",
       "typeVersion": 1,
       "position": [
-        48,
-        -112
+        224,
+        128
       ],
-      "id": "ab1661f1-2306-4965-9169-85c26e98e882",
+      "id": "86d8c7ac-6c04-4bda-b1e7-49e387f6e0f3",
       "name": "Get companies by name",
       "credentials": {
         "openRegisterApi": {
@@ -37,14 +38,35 @@
         "companyId": "={{ $json.company_id }}",
         "requestOptions": {}
       },
-      "type": "CUSTOM.openRegister",
+      "type": "@oregister/n8n-nodes-openregister.openRegister",
       "typeVersion": 1,
       "position": [
-        272,
-        -400
+        448,
+        -160
       ],
-      "id": "cbb0aa21-e693-47b8-9563-ed4580d68ca4",
+      "id": "7c84879d-3c09-44eb-b68b-2ac9e74a967a",
       "name": "Get company details",
+      "credentials": {
+        "openRegisterApi": {
+          "id": "2Cuv4zEm4M1rj5i1",
+          "name": "OpenRegister account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "companyOwners",
+        "companyId": "={{ $json.company_id }}",
+        "requestOptions": {}
+      },
+      "type": "@oregister/n8n-nodes-openregister.openRegister",
+      "typeVersion": 1,
+      "position": [
+        448,
+        224
+      ],
+      "id": "18cc6751-97ae-4c0e-aadf-ce8152b77d82",
+      "name": "Get company owners",
       "credentials": {
         "openRegisterApi": {
           "id": "2Cuv4zEm4M1rj5i1",
@@ -58,13 +80,13 @@
         "companyId": "={{ $json.company_id }}",
         "requestOptions": {}
       },
-      "type": "CUSTOM.openRegister",
+      "type": "@oregister/n8n-nodes-openregister.openRegister",
       "typeVersion": 1,
       "position": [
-        272,
-        -208
+        448,
+        32
       ],
-      "id": "b45a3ae4-576e-4a20-aefe-26821475762d",
+      "id": "5eb5379c-9190-4dee-8564-95287a5dd04e",
       "name": "Get company financials",
       "credentials": {
         "openRegisterApi": {
@@ -79,35 +101,14 @@
         "companyId": "={{ $json.company_id }}",
         "requestOptions": {}
       },
-      "type": "CUSTOM.openRegister",
+      "type": "@oregister/n8n-nodes-openregister.openRegister",
       "typeVersion": 1,
       "position": [
-        272,
-        -16
+        448,
+        416
       ],
-      "id": "b28c578f-189c-49f0-8fa7-472d861264c7",
+      "id": "8f1071af-bdd8-4afd-91a4-d98add5b5351",
       "name": "Get company holdings",
-      "credentials": {
-        "openRegisterApi": {
-          "id": "2Cuv4zEm4M1rj5i1",
-          "name": "OpenRegister account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "companyOwners",
-        "companyId": "={{ $json.company_id }}",
-        "requestOptions": {}
-      },
-      "type": "CUSTOM.openRegister",
-      "typeVersion": 1,
-      "position": [
-        272,
-        176
-      ],
-      "id": "ad0ebb67-47f4-42f0-9ac3-6108cda399a8",
-      "name": "Get company owners",
       "credentials": {
         "openRegisterApi": {
           "id": "2Cuv4zEm4M1rj5i1",
@@ -138,17 +139,17 @@
             "index": 0
           },
           {
+            "node": "Get company owners",
+            "type": "main",
+            "index": 0
+          },
+          {
             "node": "Get company financials",
             "type": "main",
             "index": 0
           },
           {
             "node": "Get company holdings",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Get company owners",
             "type": "main",
             "index": 0
           }
@@ -160,11 +161,11 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "92d5ede8-1d13-49c5-9ad3-a6d565b245f0",
+  "versionId": "93ae7e46-5cdb-490a-a64e-0484abd750c3",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "03b1a0f0679326b05c6a39d8699cff91fa57d5a9261d3f0b270b20f168176533"
   },
-  "id": "N7mqUwKJjMKmdo2s",
+  "id": "waEWGw5KC0BQRCuk",
   "tags": []
 }
