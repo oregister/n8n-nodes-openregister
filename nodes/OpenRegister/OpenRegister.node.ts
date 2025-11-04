@@ -12,6 +12,7 @@ export class OpenRegister implements INodeType {
     defaults: { name: 'OpenRegister' },
     inputs: [NodeConnectionType.Main],
     outputs: [NodeConnectionType.Main],
+    usableAsTool: true,
     credentials: [
       {
         name: 'openRegisterApi',
