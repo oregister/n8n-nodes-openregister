@@ -1,5 +1,7 @@
 import type { IAuthenticateGeneric, ICredentialTestRequest, ICredentialType, INodeProperties } from 'n8n-workflow';
+import packageJson from '../package.json';
 
+const OPENREGISTER_USER_AGENT = `Openregister/n8n ${packageJson.version}`;
 
 export class OpenRegisterApi implements ICredentialType {
     name = 'openRegisterApi';
@@ -31,6 +33,7 @@ export class OpenRegisterApi implements ICredentialType {
         properties: {
             headers: {
                 Authorization: '={{"Bearer " + $credentials.apiKey}}',
+                'User-Agent': OPENREGISTER_USER_AGENT,
             },
         },
     };
@@ -41,6 +44,7 @@ export class OpenRegisterApi implements ICredentialType {
 			url: '/v1/company/DE-HRB-F1103-267645',
             headers: {
                 Authorization: '={{"Bearer " + $credentials.apiKey}}',
+                'User-Agent': OPENREGISTER_USER_AGENT,
             },
             method: 'GET',
 		},
